@@ -16,7 +16,7 @@ BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel >= 2.8
 BuildRequires:	gettext
 BuildRequires:	pkgconfig
-Requires:	python-pygtk >= 2.8
+Requires:	python-pygtk-gtk >= 2.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
