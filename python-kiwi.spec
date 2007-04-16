@@ -13,10 +13,10 @@ Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
 # Source0-md5:	4779754c73e70cdd7c23e025a1830eb7
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	python-devel
-BuildRequires:	python-pygtk-devel >= 2.8
+BuildRequires:	python-pygtk-devel >= 2:2.8
 BuildRequires:	gettext
 BuildRequires:	pkgconfig
-Requires:	python-pygtk-gtk >= 2.8
+Requires:	python-pygtk-gtk >= 2:2.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -95,18 +95,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kiwi.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README NEWS
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/kiwi
 %{py_sitescriptdir}/kiwi
 
 %files gazpacho
 %defattr(644,root,root,755)
-%doc COPYING
 %{py_sitescriptdir}/gazpacho/widgets/*
 %{_datadir}/gazpacho/catalogs/*
 %{_datadir}/gazpacho/resources/*
 
 %files docs
 %defattr(644,root,root,755)
-%doc COPYING doc/* examples
+%doc doc/* examples
