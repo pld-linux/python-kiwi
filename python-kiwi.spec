@@ -8,7 +8,7 @@ Name:		python-%{module}
 Version:	1.9.14
 Release:	0.1
 License:	LGPL
-Group:		Development/Libraries
+Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
 # Source0-md5:	4779754c73e70cdd7c23e025a1830eb7
 URL:		http://www.async.com.br/projects/kiwi/
@@ -20,7 +20,6 @@ Requires:	python-pygtk-gtk >= 2.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 Kiwi consists of a set of classes and wrappers for PyGTK that were
 developed to provide a sort of framework for applications. Fully
@@ -30,11 +29,11 @@ access and display your object data.
 
 %description -l pl.UTF-8
 Kiwi składa się ze zbioru klas i wrapperów dla PyGTK które zostały
-napisane by dostarczać pewnego rodzaju framework dla aplikacji. W
-pełni zorientowane obiektowo i zgrubsza zainspirowane MVC w Small-
-talku, Kiwi dostarcza prosty i praktyczny sposób do budowania
+napisane by dostarczać pewnego rodzaju szkielet dla aplikacji. Kiwi,
+będąc w pełni zorientowanym obiektowo i z grubsza zainspirowanym MVC w
+Smalltalku, dostarcza prosty i praktyczny sposób do budowania
 formatek, okienek i kontrolek które w przezroczysty sposób pobierają i
-wyś- wietlają twoja dane.
+wyświetlają dane.
 
 %package gazpacho
 Summary:	Gazpacho integration for kiwi
@@ -62,31 +61,34 @@ This package contains documentation that contains APIs and related
 materials, useful for reference when writing software using Kiwi.
 
 %description docs -l pl.UTF-8
-Ta paczka zawiera dokumentacje która zawiera API i związane z nim
+Ten pakiet zawiera dokumentację opisującą API i związane z nim
 materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 
 %prep
 %setup -q -n %{module}-%{version}
 sed -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
 
-
 %build
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
-
+CFLAGS="%{rpmcflags}" %{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+
+%{__python} setup.py install \
+	-O1 \
+	--skip-build \
+	--root $RPM_BUILD_ROOT
+
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
 # The install script mis-guesses where gazpacho is installed on
 # non-x86 platforms
 if [ "%{python_sitearch}" != "%{py_sitedir}" ]; then
-    mv $RPM_BUILD_ROOT%{python_sitearch}/gazpacho \
-        $RPM_BUILD_ROOT%{py_sitedir}/
+	mv $RPM_BUILD_ROOT%{python_sitearch}/gazpacho \
+		$RPM_BUILD_ROOT%{py_sitedir}
 fi
 
-%{find_lang} kiwi
+%find_lang kiwi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
