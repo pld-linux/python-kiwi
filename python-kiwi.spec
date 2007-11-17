@@ -5,12 +5,12 @@
 Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
-Version:	1.9.14
-Release:	0.1
+Version:	1.9.19
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
-# Source0-md5:	4779754c73e70cdd7c23e025a1830eb7
+# Source0-md5:	6c721d501ca3da121fb6c74c98231ef5
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel >= 2:2.8
@@ -99,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/kiwi
 %{py_sitescriptdir}/kiwi
+%{py_sitescriptdir}/kiwi-*.egg-info
 
 %files gazpacho
 %defattr(644,root,root,755)
