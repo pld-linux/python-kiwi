@@ -1,5 +1,6 @@
 # TODO:
 # - doublecheck this, as almost raw stolen from FC
+# - py_postclean?
 #
 %define		module	kiwi
 Summary:	Framework for Python GUI applications
@@ -12,10 +13,12 @@ Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
 # Source0-md5:	6c721d501ca3da121fb6c74c98231ef5
 URL:		http://www.async.com.br/projects/kiwi/
-BuildRequires:	python-devel
+BuildRequires:	gettext-devel
+BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygtk-devel >= 2:2.8
-BuildRequires:	gettext
+BuildRequires:	rpm-pythonprov
 BuildRequires:	pkgconfig
+%pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 2:2.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,8 +50,8 @@ This package contains additional files necessary for integration with
 Gazpacho glade editor.
 
 %description gazpacho -l pl.UTF-8
-Ta paczka zawiera dodatkowe pliki koniecznie dla integracji z edytorem
-plików glade Gazpacho.
+Ten pakiet zawiera dodatkowe pliki koniecznie dla integracji z
+edytorem plików glade Gazpacho.
 
 %package docs
 Summary:	Documentation related to python-kiwi
