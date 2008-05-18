@@ -72,7 +72,7 @@ materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 sed -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
 
 %build
-CFLAGS="%{rpmcflags}" %{__python} setup.py build
+CFLAGS="%{rpmcflags}" LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib" %{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -101,8 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/kiwi
-%{py_sitescriptdir}/kiwi
-%{py_sitescriptdir}/kiwi-*.egg-info
+%{py_sitedir}/kiwi
 
 %files gazpacho
 %defattr(644,root,root,755)
