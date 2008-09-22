@@ -1,0 +1,20 @@
+diff -burNp kiwi-1.9.22/tests/test_datatypes.py kiwi-1.9.22.new/tests/test_datatypes.py
+--- kiwi-1.9.22/tests/test_datatypes.py	2008-05-28 22:31:00.000000000 +0200
++++ kiwi-1.9.22.new/tests/test_datatypes.py	2008-09-22 21:21:26.172229653 +0200
+@@ -81,14 +81,14 @@ class DateTest(unittest.TestCase):
+         set_locale(locale.LC_TIME, 'C')
+ 
+     def testFromStringES(self):
+-        if not set_locale(locale.LC_TIME, 'es_ES'):
++        if not set_locale(locale.LC_TIME, 'es'):
+             return
+ 
+         self.assertEqual(self.conv.from_string("12/2/79"), self.date)
+         self.assertEqual(self.conv.from_string("12/02/79"), self.date)
+ 
+     def testAsStringES(self):
+-        if not set_locale(locale.LC_TIME, 'es_ES'):
++        if not set_locale(locale.LC_TIME, 'es'):
+             return
+ 
+         self.assertEqual(self.conv.as_string(self.date), "12/02/79")
