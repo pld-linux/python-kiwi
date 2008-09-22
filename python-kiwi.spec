@@ -6,12 +6,12 @@
 Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
-Version:	1.9.21
+Version:	1.9.22
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
-# Source0-md5:	deed373880e00ae4b27c09cdc74d6e9e
+# Source0-md5:	3e2e13f01efe02e5749b2424e0508180
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	gettext-devel
 BuildRequires:	python-devel >= 1:2.5
