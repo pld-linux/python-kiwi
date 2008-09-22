@@ -7,11 +7,12 @@ Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
 Version:	1.9.22
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
 # Source0-md5:	3e2e13f01efe02e5749b2424e0508180
+Patch0:		%{name}_es_locale_fix.patch
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	gettext-devel
 BuildRequires:	python-devel >= 1:2.5
@@ -69,7 +70,11 @@ materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1
 sed -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
+# es locale quick fix
+mv -f locale/es_ES locale/es
+mv -f po/es_ES.po po/es.po 
 
 %build
 CFLAGS="%{rpmcflags}" %{__python} setup.py build
