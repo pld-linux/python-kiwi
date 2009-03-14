@@ -1,17 +1,16 @@
 # TODO:
 # - doublecheck this, as almost raw stolen from FC
-# - py_postclean?
 #
 %define		module	kiwi
 Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
-Version:	1.9.22
-Release:	3
+Version:	1.9.24
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
-# Source0-md5:	3e2e13f01efe02e5749b2424e0508180
+# Source0-md5:	217a2c0d3e4b807b01206798394befe9
 Patch0:		%{name}_es_locale_fix.patch
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	gettext-devel
@@ -97,6 +96,9 @@ if [ "%{python_sitearch}" != "%{py_sitedir}" ]; then
 fi
 
 %find_lang kiwi
+
+# Remove *.py files. We don't package them.
+find $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module} -type f -name '*.py' -print0 | xargs -0 rm -f
 
 %clean
 rm -rf $RPM_BUILD_ROOT
