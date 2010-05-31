@@ -5,19 +5,20 @@
 Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
-Version:	1.9.24
+Version:	1.9.26
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
-# Source0-md5:	217a2c0d3e4b807b01206798394befe9
+# Source0-md5:	43c2aab9acf8d95321ee1ccec2c5e4e4
 Patch0:		%{name}_es_locale_fix.patch
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygtk-devel >= 2:2.8
 BuildRequires:	rpm-pythonprov
-BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 2:2.8
 BuildArch:	noarch
@@ -42,8 +43,8 @@ wyświetlają dane.
 Summary:	Gazpacho integration for kiwi
 Summary(pl.UTF-8):	Integracja Gazpacho dla kiwi
 Group:		Development/Libraries
-Requires:	gazpacho >= 0.6.6
 Requires:	%{name} = %{version}-%{release}
+Requires:	gazpacho >= 0.6.6
 
 %description gazpacho
 This package contains additional files necessary for integration with
@@ -70,10 +71,10 @@ materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
-sed -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
+%{__sed} -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
 # es locale quick fix
 mv -f locale/es_ES locale/es
-mv -f po/es_ES.po po/es.po 
+mv -f po/es_ES.po po/es.po
 
 %build
 CFLAGS="%{rpmcflags}" %{__python} setup.py build
@@ -90,8 +91,8 @@ rm -rf $RPM_BUILD_ROOT%{_docdir}
 
 # The install script mis-guesses where gazpacho is installed on
 # non-x86 platforms
-if [ "%{python_sitearch}" != "%{py_sitedir}" ]; then
-	mv $RPM_BUILD_ROOT%{python_sitearch}/gazpacho \
+if [ "%{py_sitedir}" != "%{py_sitedir}" ]; then
+	mv $RPM_BUILD_ROOT%{py_sitedir}/gazpacho \
 		$RPM_BUILD_ROOT%{py_sitedir}
 fi
 
@@ -113,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files gazpacho
 %defattr(644,root,root,755)
-%{py_sitescriptdir}/gazpacho/widgets/*
+#%%{py_sitescriptdir}/gazpacho/widgets/*
 %{_datadir}/gazpacho/catalogs/*
 %{_datadir}/gazpacho/resources/*
 
