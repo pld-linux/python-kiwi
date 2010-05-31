@@ -18,6 +18,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygtk-devel >= 2:2.8
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 2:2.8
@@ -91,15 +92,15 @@ rm -rf $RPM_BUILD_ROOT%{_docdir}
 # move gazpacho stuff to proper place
 mv $RPM_BUILD_ROOT%{py_scriptdir}/dist-packages/gazpacho $RPM_BUILD_ROOT%{py_sitescriptdir}
 
-%find_lang kiwi
-
 # Remove *.py files. We don't package them.
 find $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module} -type f -name '*.py' -print0 | xargs -0 rm -f
+
+%find_lang %{name} --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f kiwi.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
