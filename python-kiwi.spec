@@ -1,6 +1,3 @@
-# TODO:
-# - doublecheck this, as almost raw stolen from FC
-#
 %define		module	kiwi
 Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
@@ -15,7 +12,7 @@ Patch0:		%{name}_es_locale_fix.patch
 URL:		http://www.async.com.br/projects/kiwi/
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 1:2.5
+BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel >= 2:2.8
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -103,16 +100,28 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/kiwi*
 %{_datadir}/kiwi
-%{py_sitescriptdir}/kiwi
+%{py_sitescriptdir}/kiwi/*.py[co]
+%dir %{py_sitescriptdir}/kiwi/db
+%{py_sitescriptdir}/kiwi/db/*.py[co]
+%dir %{py_sitescriptdir}/kiwi/i18n
+%{py_sitescriptdir}/kiwi/i18n/*.py[co]
+%dir %{py_sitescriptdir}/kiwi/ui
+%{py_sitescriptdir}/kiwi/ui/*.py[co]
+%dir %{py_sitescriptdir}/kiwi/ui/test
+%{py_sitescriptdir}/kiwi/ui/test/*.py[co]
+%dir %{py_sitescriptdir}/kiwi/ui/widgets
+%{py_sitescriptdir}/kiwi/ui/widgets/*.py[co]
+%if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/kiwi-*.egg-info
+%endif
 
 %files gazpacho
 %defattr(644,root,root,755)
-%{py_sitescriptdir}/gazpacho/widgets/*
-%{_datadir}/gazpacho/catalogs/*
-%{_datadir}/gazpacho/resources/*
+%{py_sitescriptdir}/gazpacho/widgets
+%{_datadir}/gazpacho/catalogs
+%{_datadir}/gazpacho/resources
 
 %files docs
 %defattr(644,root,root,755)
