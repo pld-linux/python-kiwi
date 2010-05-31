@@ -89,12 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
-# The install script mis-guesses where gazpacho is installed on
-# non-x86 platforms
-if [ "%{py_sitedir}" != "%{py_sitedir}" ]; then
-	mv $RPM_BUILD_ROOT%{py_sitedir}/gazpacho \
-		$RPM_BUILD_ROOT%{py_sitedir}
-fi
+# move gazpacho stuff to proper place
+mv $RPM_BUILD_ROOT%{py_scriptdir}/dist-packages/gazpacho $RPM_BUILD_ROOT%{py_sitescriptdir}
 
 %find_lang kiwi
 
@@ -114,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files gazpacho
 %defattr(644,root,root,755)
-#%%{py_sitescriptdir}/gazpacho/widgets/*
+%{py_sitescriptdir}/gazpacho/widgets/*
 %{_datadir}/gazpacho/catalogs/*
 %{_datadir}/gazpacho/resources/*
 
