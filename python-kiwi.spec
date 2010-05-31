@@ -83,9 +83,8 @@ CFLAGS="%{rpmcflags}" %{__python} setup.py build
 rm -rf $RPM_BUILD_ROOT
 
 %{__python} setup.py install \
-	-O1 \
-	--skip-build \
-	--root $RPM_BUILD_ROOT
+	--root=$RPM_BUILD_ROOT \
+	--optimize=2
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
