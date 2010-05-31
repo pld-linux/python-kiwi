@@ -78,7 +78,7 @@ mv -f locale/es_ES locale/es
 mv -f po/es_ES.po po/es.po
 
 %build
-CFLAGS="%{rpmcflags}" %{__python} setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
