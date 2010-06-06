@@ -59,11 +59,11 @@ Group:		Documentation
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	python-kiwi-docs
 
-%description docs
+%description doc
 This package contains documentation that contains APIs and related
 materials, useful for reference when writing software using Kiwi.
 
-%description docs -l pl.UTF-8
+%description doc -l pl.UTF-8
 Ten pakiet zawiera dokumentację opisującą API i związane z nim
 materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 
@@ -123,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files gazpacho
 %defattr(644,root,root,755)
+%dir %{py_sitescriptdir}/gazpacho
 %{py_sitescriptdir}/gazpacho/widgets
 %{_datadir}/gazpacho/catalogs
 %{_datadir}/gazpacho/resources
