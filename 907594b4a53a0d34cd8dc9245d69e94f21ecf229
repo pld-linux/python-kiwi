@@ -1,0 +1,2 @@
+- unify %find_lang macro
+- BR: rpmbuild(macros) >= 1.268
