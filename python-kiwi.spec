@@ -3,7 +3,7 @@ Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
 Version:	1.9.26
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
@@ -52,11 +52,12 @@ Gazpacho glade editor.
 Ten pakiet zawiera dodatkowe pliki koniecznie dla integracji z
 edytorem plików glade Gazpacho.
 
-%package docs
+%package doc
 Summary:	Documentation related to python-kiwi
 Summary(pl.UTF-8):	Dokumentacja związana z python-kiwi
 Group:		Documentation
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	python-kiwi-docs
 
 %description docs
 This package contains documentation that contains APIs and related
@@ -86,11 +87,13 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
 # move gazpacho stuff to proper place
 mv $RPM_BUILD_ROOT%{py_scriptdir}/dist-packages/gazpacho $RPM_BUILD_ROOT%{py_sitescriptdir}
 
-# Remove *.py files. We don't package them.
-find $RPM_BUILD_ROOT%{py_sitescriptdir}/%{module} -type f -name '*.py' -print0 | xargs -0 rm -f
+%py_postclean
 
 %find_lang %{name} --all-name
 
@@ -102,6 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/kiwi*
 %{_datadir}/kiwi
+%dir %{py_sitescriptdir}/kiwi
 %{py_sitescriptdir}/kiwi/*.py[co]
 %dir %{py_sitescriptdir}/kiwi/db
 %{py_sitescriptdir}/kiwi/db/*.py[co]
@@ -123,6 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gazpacho/catalogs
 %{_datadir}/gazpacho/resources
 
-%files docs
+%files doc
 %defattr(644,root,root,755)
-%doc doc/* examples
+%doc doc/*
+%{_examplesdir}/%{name}-%{version}
