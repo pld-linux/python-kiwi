@@ -3,7 +3,7 @@ Summary:	Framework for Python GUI applications
 Summary(pl.UTF-8):	Szkielet do budowania GUI w Pythonie
 Name:		python-%{module}
 Version:	1.9.26
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
