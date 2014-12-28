@@ -10,7 +10,7 @@ Source0:	http://download.gnome.org/sources/kiwi/1.9/%{module}-%{version}.tar.bz2
 # Source0-md5:	43c2aab9acf8d95321ee1ccec2c5e4e4
 Patch0:		%{name}_es_locale_fix.patch
 URL:		http://www.async.com.br/projects/kiwi/
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel >= 2:2.8
