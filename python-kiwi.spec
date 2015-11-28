@@ -76,14 +76,12 @@ mv -f locale/es_ES locale/es
 mv -f po/es_ES.po po/es.po
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python} setup.py install \
-	--root=$RPM_BUILD_ROOT \
-	--optimize=2
+%py_install
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 
