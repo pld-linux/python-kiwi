@@ -15,7 +15,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-pygtk-devel >= 2:2.8
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	sed >= 4.0
 %pyrequires_eq	python-libs
 Requires:	python-pygtk-gtk >= 2:2.8
