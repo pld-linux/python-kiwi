@@ -69,7 +69,7 @@ materiały, użyteczne podczas pisania oprogramowania używającego Kiwi.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 %{__sed} -i -e 's|share/doc/kiwi|share/doc/%{name}-%{version}|' setup.py
 # es locale quick fix
 mv -f locale/es_ES locale/es
